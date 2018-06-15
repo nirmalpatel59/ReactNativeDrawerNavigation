@@ -1,0 +1,3 @@
+rootProject.name = 'drawerNavigation'
+
+include ':app'
