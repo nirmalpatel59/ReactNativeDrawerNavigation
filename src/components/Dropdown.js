@@ -7,6 +7,7 @@ class MaterialDropdown extends Component {
       <Dropdown
         label={this.props.label}
         data={this.props.data}
+        containerStyle={this.props.containerStyle}
       />
     );
   }
