@@ -23,5 +23,6 @@ export default DrawerNavigator({
     screen: AboutUs
   }
 }, {
+  initialRouteName: 'Home',
   contentComponent: Drawer
 });

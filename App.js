@@ -5,12 +5,30 @@
  */
 
 import React, { Component } from 'react';
+import { StackNavigator } from 'react-navigation';
+import Login from './src/screens/Login';
+// import Drawer from './src/components/Drawer';
 import DrawerNavigator from './src/screens';
+
+const AppNavigator = StackNavigator(
+  {
+    Login: { screen: Login },
+    Drawer: { 
+      screen: ({ navigation }) => <DrawerNavigator screenProps={{ rootNavigation: navigation }} /> 
+    }
+  },
+  {
+    index: 0,
+    initialRouteName: 'Login',
+    headerMode: 'none'
+  }
+);
 
 export default class App extends Component {
   render() {
     return (
-      <DrawerNavigator />
+      <AppNavigator />
+      // <DrawerNavigator />
     );
   }
 }
