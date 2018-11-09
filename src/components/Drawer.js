@@ -1,6 +1,6 @@
 import React, { Component } from 'react'; 
 import { View, Text, FlatList, TouchableNativeFeedback } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { NavigationActions } from 'react-navigation';
 import { theme } from '../utilities/color-palette';
 
@@ -18,10 +18,11 @@ class Drawer extends Component {
       { key: 'Accounts', icon: 'account-circle', screen: 'Account' },
       { key: 'separator1', type: 'separator' },
       { key: 'Settings', icon: 'settings', screen: 'Setting' },
-      { key: 'About Us', icon: 'info', screen: 'AboutUs' },
+      { key: 'About Us', icon: 'information', screen: 'AboutUs' },
       { key: 'separator2', type: 'separator' },
       { key: 'Share App', icon: 'share', screen: 'ShareApp' },
-      { key: 'Rate Us', icon: 'star', screen: 'RateUs' },      
+      { key: 'Rate Us', icon: 'star', screen: 'RateUs' },
+      { key: 'Signout', icon: 'logout', screen: 'Signout' }
       
     ];
     const { 

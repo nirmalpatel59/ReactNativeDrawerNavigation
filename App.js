@@ -16,7 +16,8 @@ import { createRootNavigator } from './src/router';
 //   {
 //     Login: { screen: Login },
 //     Drawer: { 
-//       screen: ({ navigation }) => <DrawerNavigator screenProps={{ rootNavigation: navigation }} /> 
+//       screen: ({ navigation }) => <DrawerNavigator 
+//       screenProps={{ rootNavigation: navigation }} /> 
 //     }
 //   },
 //   {
