@@ -3,15 +3,48 @@ import { View, StyleSheet, Text } from 'react-native';
 import Header from '../components/Header';
 import MaterialDropdown from '../components/Dropdown';
 
+const authUrl = 'http://192.168.56.1:3000/';
+
 class ExamHistory extends Component {
+  state = {
+    examList: []
+  }
+
+  componentWillMount() {
+    fetch(authUrl + 'getResultByStudentId', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        studentId: '5b668aef23eed121a5224538'
+      })
+    }).then((response) => response.json())
+    .then((responseJson) => {
+      // console.log(responseJson);
+      if (responseJson.status) {
+        console.log('in fetch response -------------------------');
+        this.setState({ examList: responseJson.data });
+        console.log(this.setState);
+      } else {
+        console.log(JSON.stringify(responseJson));
+      }
+    });
+  }
+
   render() {
-    const data = [{
-      value: 'Banana',
-    }, {
-      value: 'Mango',
-    }, {
-      value: 'Pear',
-    }];
+    // const data = [{
+    //   value: 'Banana',
+    // }, {
+    //   value: 'Mango',
+    // }, {
+    //   value: 'Pear',
+    // }];
+    // const data = this.state.examList;
+    console.log('==========================');
+    console.log(this.state.examList);
+    console.log('===========================');
     const { 
       containerStyle,
       examSelector,
@@ -24,7 +57,7 @@ class ExamHistory extends Component {
         <View style={containerStyle}>
           <View style={examSelector}>
             <MaterialDropdown 
-              data={data}
+              data={this.state.examList}
               label='Choose Exam'
               containerStyle={dropdownContainerStyle}
             />

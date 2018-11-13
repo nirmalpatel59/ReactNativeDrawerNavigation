@@ -3,6 +3,7 @@ import { View, Text, FlatList, TouchableNativeFeedback } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { NavigationActions } from 'react-navigation';
 import { theme } from '../utilities/color-palette';
+import { onSignOut } from '../utilities/auth';
 
 class Drawer extends Component {
   navigateToScreen = (route) => () => {
@@ -10,6 +11,13 @@ class Drawer extends Component {
       routeName: route
     });
     this.props.navigation.dispatch(navigateAction);
+  }
+  signOut = () => {
+    console.log('in signoput function');
+    onSignOut()
+    .then(() => {
+      this.props.navigation.navigate('SignedOut');
+    });
   }
   render() {
     const data = [
@@ -22,7 +30,7 @@ class Drawer extends Component {
       { key: 'separator2', type: 'separator' },
       { key: 'Share App', icon: 'share', screen: 'ShareApp' },
       { key: 'Rate Us', icon: 'star', screen: 'RateUs' },
-      { key: 'Signout', icon: 'logout', screen: 'Signout' }
+      { key: 'Signout', type: 'link', icon: 'logout', screen: 'Signout' }
       
     ];
     const { 
@@ -46,6 +54,16 @@ class Drawer extends Component {
             if (item.type === 'separator') {
               return (
                 <View style={seperatorStyle} />
+              );
+            }
+            if (item.type === 'link') {
+              return (
+                <TouchableNativeFeedback onPress={this.signOut} >
+                  <View style={drawerItemStyle}>
+                    <Icon name={item.icon} size={24} color="gray" />
+                    <Text style={drawerMenuStyle} key={index}>{item.key}</Text>
+                  </View>
+                </TouchableNativeFeedback>  
               );
             }
             return (

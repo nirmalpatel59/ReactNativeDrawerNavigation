@@ -23,7 +23,19 @@ export const onSignIn = (dob, pno) => {
   });
 };
 
-export const onSignOut = () => AsyncStorage.removeItem(USER_KEY);
+export const onSignOut = () =>  {
+  return new Promise((resolve, reject) => {
+    AsyncStorage.removeItem(USER_KEY)
+      .then(res => {
+        if (res !== null) {
+          resolve(true);
+        } else {
+          resolve(false);
+        }
+      })
+      .catch(err => reject(err));
+  });
+};
 
 export const isSignedIn = () => {
   return new Promise((resolve, reject) => {
