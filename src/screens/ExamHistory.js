@@ -6,10 +6,8 @@ import MaterialDropdown from '../components/Dropdown';
 const authUrl = 'http://192.168.56.1:3000/';
 
 class ExamHistory extends Component {
-  state = {
-    examList: []
-  }
-
+  state = { examList: [] };
+  
   componentWillMount() {
     fetch(authUrl + 'getResultByStudentId', {
       method: 'POST',
@@ -22,10 +20,18 @@ class ExamHistory extends Component {
       })
     }).then((response) => response.json())
     .then((responseJson) => {
-      // console.log(responseJson);
+      console.log('in fetch response -------------------------');
+      console.log(responseJson);
       if (responseJson.status) {
-        console.log('in fetch response -------------------------');
-        this.setState({ examList: responseJson.data });
+        // this.setState({ examList: responseJson.data });
+        const data = [{
+          value: 'Banana',
+        }, {
+          value: 'Mango',
+        }, {
+          value: 'Pear',
+        }];
+        this.setState({ examList: data });
         console.log(this.setState);
       } else {
         console.log(JSON.stringify(responseJson));
